@@ -1,0 +1,96 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="source">
+      <UniqueIdentifier>{5904f6cd-fa38-4880-9495-2a5fd3b1eddd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flatbuffers">
+      <UniqueIdentifier>{fc3b9ace-550a-496f-ac00-144abdcb6561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="rapidjson">
+      <UniqueIdentifier>{70f77f55-8da9-41bc-9d06-d007bca63f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jsonhandler">
+      <UniqueIdentifier>{69a7448d-38a3-4118-9d50-e7d4a5e4012a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flexbufferhandler">
+      <UniqueIdentifier>{e5c1af70-0a10-4203-b546-f0949247e8bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="jsonhandler\source">
+      <UniqueIdentifier>{12cc16bf-6319-4920-92bf-b026a358ed02}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flatbuffers\source">
+      <UniqueIdentifier>{ce97ffa2-82ca-465e-b9e9-1a5105628131}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\flexbufferhandler\flexjsonbridge.h">
+      <Filter>flexbufferhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FlexBufferVsJson\jsonHandler\json_util.hpp">
+      <Filter>jsonhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\FlexBufferVsJson\jsonHandler\json_value.hpp">
+      <Filter>jsonhandler</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\base.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\code_generators.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\flatbuffers.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\flatc.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\flexbuffers.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\grpc.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\hash.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\idl.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\minireflect.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\reflection.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\reflection_generated.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\registry.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\stl_emulation.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\reader.h">
+      <Filter>rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flatbuffers\util.h">
+      <Filter>flatbuffers</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\FlexBufferVsJson\jsonHandler\source\json_util.cpp">
+      <Filter>jsonhandler\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FlexBufferVsJson\jsonHandler\source\json_value.cpp">
+      <Filter>jsonhandler\source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\FlexBufferVsJson\main.cpp">
+      <Filter>source</Filter>
+    </ClCompile>
+    <ClCompile Include="..\flatbuffers\src\util.cpp">
+      <Filter>flatbuffers\source</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
