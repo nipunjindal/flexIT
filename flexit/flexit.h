@@ -149,8 +149,9 @@ namespace flexit {
             std::vector<uint8_t>  bufferPtr(fmap.GetMemMappedDataLength());
             memcpy((void*)(bufferPtr.data()), fmap.GetMemMappedData(), fmap.GetMemMappedDataLength());
             reference = flexbuffers::GetRoot(bufferPtr.data(), bufferPtr.size());
+            lStatus = true;
         }
-        return true;
+        return lStatus;
     }
 
 } // end namespace flexit
