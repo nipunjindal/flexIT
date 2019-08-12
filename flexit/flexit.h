@@ -78,18 +78,7 @@ namespace flexit {
         return lStatus;
     }
     
-    static bool FreeFlexBufferReference(std::vector<char>* buffer)
-    {
-        if(buffer != nullptr)
-        {
-            delete buffer;
-            buffer = nullptr;
-            return true;
-        }
-        return false;
-    }
-    
-    static bool GetFlexbufferReferenceFromFile(const std::string& filePath, std::vector<char>* buffer, flexbuffers::Reference& reference)
+    static bool GetFlexbufferReferenceFromFile(const std::string& filePath, flexbuffers::Reference& reference)
     {
         bool lStatus = false;
 
@@ -106,15 +95,16 @@ namespace flexit {
         if(fStream.is_open())
         {
             std::streampos fileSize = fStream.tellg();
-            buffer = (new std::vector<char>(fileSize));
+            std::vector<char> buffer(fileSize);
+            //buffer = (new std::vector<char>(fileSize));
             std::vector<uint8_t>  bufferPtr(fileSize);
 
             fStream.seekg (0, std::ios::beg);
             lStatus = true;
-            fStream.read(buffer->data(), fileSize);
+            fStream.read(buffer.data(), fileSize);
             fStream.close();
             
-            memcpy((void*)(bufferPtr.data()), (void*)(buffer->data()), sizeof(fileSize));
+            memcpy((void*)(bufferPtr.data()), (void*)(buffer.data()), sizeof(fileSize));
             //bufferPtr = static_cast<std::vector<uint8_t>>(buffer);
             reference = (flexbuffers::GetRoot(bufferPtr.data(), fileSize));
         }

@@ -89,9 +89,7 @@ int main(int argc, const char * argv[]) {
         //size_t sz = flexbuilder.GetSize();
         //size_t ss = strlen(test_string_valid);
         auto str3 = map["item3"].AsString().str();
-        
-        flexit::FreeFlexBufferReference(buffer);
-        
+                
         if(ret.empty())
         {
             
