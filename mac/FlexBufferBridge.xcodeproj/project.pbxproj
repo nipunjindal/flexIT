@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		B91B03A622EBF6D8008C4E21 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91B03A522EBF6D8008C4E21 /* main.cpp */; };
-		B91B03F322EBF79C008C4E21 /* json_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91B03F022EBF79C008C4E21 /* json_util.cpp */; };
-		B91B03F422EBF79C008C4E21 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B91B03F122EBF79C008C4E21 /* json_value.cpp */; };
+		B9442A3E230068EC00D89DF1 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9442A3D230068EC00D89DF1 /* main.cpp */; };
+		B9442A43230069ED00D89DF1 /* json_value.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9442A41230069ED00D89DF1 /* json_value.cpp */; };
+		B9442A44230069ED00D89DF1 /* json_util.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9442A42230069ED00D89DF1 /* json_util.cpp */; };
+		B9442A572300720C00D89DF1 /* FlexMemoryMap.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B9442A552300720C00D89DF1 /* FlexMemoryMap.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -26,21 +27,6 @@
 
 /* Begin PBXFileReference section */
 		B91B039A22EBF5CB008C4E21 /* FlexBufferBridge */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = FlexBufferBridge; sourceTree = BUILT_PRODUCTS_DIR; };
-		B91B03A522EBF6D8008C4E21 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../FlexBufferVsJson/main.cpp; sourceTree = "<group>"; };
-		B91B03B922EBF736008C4E21 /* reflection_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reflection_generated.h; path = ../flatbuffers/reflection_generated.h; sourceTree = "<group>"; };
-		B91B03BA22EBF736008C4E21 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = ../flatbuffers/util.h; sourceTree = "<group>"; };
-		B91B03BB22EBF736008C4E21 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hash.h; path = ../flatbuffers/hash.h; sourceTree = "<group>"; };
-		B91B03BE22EBF736008C4E21 /* idl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = idl.h; path = ../flatbuffers/idl.h; sourceTree = "<group>"; };
-		B91B03BF22EBF736008C4E21 /* minireflect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = minireflect.h; path = ../flatbuffers/minireflect.h; sourceTree = "<group>"; };
-		B91B03C022EBF736008C4E21 /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base.h; path = ../flatbuffers/base.h; sourceTree = "<group>"; };
-		B91B03C122EBF736008C4E21 /* flexbuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flexbuffers.h; path = ../flatbuffers/flexbuffers.h; sourceTree = "<group>"; };
-		B91B03C222EBF736008C4E21 /* flatbuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flatbuffers.h; path = ../flatbuffers/flatbuffers.h; sourceTree = "<group>"; };
-		B91B03C322EBF736008C4E21 /* grpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = grpc.h; path = ../flatbuffers/grpc.h; sourceTree = "<group>"; };
-		B91B03C422EBF736008C4E21 /* registry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = registry.h; path = ../flatbuffers/registry.h; sourceTree = "<group>"; };
-		B91B03C522EBF736008C4E21 /* code_generators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = code_generators.h; path = ../flatbuffers/code_generators.h; sourceTree = "<group>"; };
-		B91B03C622EBF736008C4E21 /* flatc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flatc.h; path = ../flatbuffers/flatc.h; sourceTree = "<group>"; };
-		B91B03C722EBF736008C4E21 /* reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reflection.h; path = ../flatbuffers/reflection.h; sourceTree = "<group>"; };
-		B91B03C822EBF736008C4E21 /* stl_emulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stl_emulation.h; path = ../flatbuffers/stl_emulation.h; sourceTree = "<group>"; };
 		B91B03CA22EBF752008C4E21 /* allocators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = allocators.h; path = ../../external/rapidjson/allocators.h; sourceTree = "<group>"; };
 		B91B03CB22EBF752008C4E21 /* memorystream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = memorystream.h; path = ../../external/rapidjson/memorystream.h; sourceTree = "<group>"; };
 		B91B03CC22EBF752008C4E21 /* encodedstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = encodedstream.h; path = ../../external/rapidjson/encodedstream.h; sourceTree = "<group>"; };
@@ -60,11 +46,29 @@
 		B91B03E822EBF753008C4E21 /* prettywriter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = prettywriter.h; path = ../../external/rapidjson/prettywriter.h; sourceTree = "<group>"; };
 		B91B03E922EBF753008C4E21 /* filereadstream.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = filereadstream.h; path = ../../external/rapidjson/filereadstream.h; sourceTree = "<group>"; };
 		B91B03EA22EBF753008C4E21 /* reader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reader.h; path = ../../external/rapidjson/reader.h; sourceTree = "<group>"; };
-		B91B03EC22EBF779008C4E21 /* flexjsonbridge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flexjsonbridge.h; path = ../flexbufferhandler/flexjsonbridge.h; sourceTree = "<group>"; };
-		B91B03EE22EBF79C008C4E21 /* json_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json_value.hpp; path = ../FlexBufferVsJson/jsonHandler/json_value.hpp; sourceTree = "<group>"; };
-		B91B03F022EBF79C008C4E21 /* json_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_util.cpp; sourceTree = "<group>"; };
-		B91B03F122EBF79C008C4E21 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = json_value.cpp; sourceTree = "<group>"; };
-		B91B03F222EBF79C008C4E21 /* json_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json_util.hpp; path = ../FlexBufferVsJson/jsonHandler/json_util.hpp; sourceTree = "<group>"; };
+		B9442A3D230068EC00D89DF1 /* main.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = main.cpp; path = ../main.cpp; sourceTree = "<group>"; };
+		B9442A3F230069E300D89DF1 /* json_util.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json_util.hpp; path = ../rapidjsonwrapper/jsonhandler/json_util.hpp; sourceTree = "<group>"; };
+		B9442A40230069E300D89DF1 /* json_value.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; name = json_value.hpp; path = ../rapidjsonwrapper/jsonhandler/json_value.hpp; sourceTree = "<group>"; };
+		B9442A41230069ED00D89DF1 /* json_value.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_value.cpp; path = ../../../rapidjsonwrapper/jsonhandler/source/json_value.cpp; sourceTree = "<group>"; };
+		B9442A42230069ED00D89DF1 /* json_util.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; name = json_util.cpp; path = ../../../rapidjsonwrapper/jsonhandler/source/json_util.cpp; sourceTree = "<group>"; };
+		B9442A4523006A0500D89DF1 /* stl_emulation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = stl_emulation.h; path = ../external/flatbuffers/stl_emulation.h; sourceTree = "<group>"; };
+		B9442A4623006A0500D89DF1 /* util.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = util.h; path = ../external/flatbuffers/util.h; sourceTree = "<group>"; };
+		B9442A4723006A0500D89DF1 /* grpc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = grpc.h; path = ../external/flatbuffers/grpc.h; sourceTree = "<group>"; };
+		B9442A4823006A0500D89DF1 /* flatc.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flatc.h; path = ../external/flatbuffers/flatc.h; sourceTree = "<group>"; };
+		B9442A4923006A0500D89DF1 /* reflection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reflection.h; path = ../external/flatbuffers/reflection.h; sourceTree = "<group>"; };
+		B9442A4A23006A0500D89DF1 /* reflection_generated.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = reflection_generated.h; path = ../external/flatbuffers/reflection_generated.h; sourceTree = "<group>"; };
+		B9442A4B23006A0500D89DF1 /* flexbuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flexbuffers.h; path = ../external/flatbuffers/flexbuffers.h; sourceTree = "<group>"; };
+		B9442A4C23006A0500D89DF1 /* flatbuffers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flatbuffers.h; path = ../external/flatbuffers/flatbuffers.h; sourceTree = "<group>"; };
+		B9442A4D23006A0500D89DF1 /* registry.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = registry.h; path = ../external/flatbuffers/registry.h; sourceTree = "<group>"; };
+		B9442A4E23006A0500D89DF1 /* hash.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = hash.h; path = ../external/flatbuffers/hash.h; sourceTree = "<group>"; };
+		B9442A4F23006A0500D89DF1 /* base.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = base.h; path = ../external/flatbuffers/base.h; sourceTree = "<group>"; };
+		B9442A5023006A0500D89DF1 /* idl.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = idl.h; path = ../external/flatbuffers/idl.h; sourceTree = "<group>"; };
+		B9442A5123006A0500D89DF1 /* code_generators.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = code_generators.h; path = ../external/flatbuffers/code_generators.h; sourceTree = "<group>"; };
+		B9442A5223006A0500D89DF1 /* minireflect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = minireflect.h; path = ../external/flatbuffers/minireflect.h; sourceTree = "<group>"; };
+		B9442A5323006ABD00D89DF1 /* flexit.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = flexit.h; path = ../flexit/flexit.h; sourceTree = "<group>"; };
+		B9442A552300720C00D89DF1 /* FlexMemoryMap.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; name = FlexMemoryMap.cpp; path = ../flexit/flexmemmap/FlexMemoryMap.cpp; sourceTree = "<group>"; };
+		B9442A562300720C00D89DF1 /* FlexMemoryMap.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = FlexMemoryMap.h; path = ../flexit/flexmemmap/FlexMemoryMap.h; sourceTree = "<group>"; };
+		B9442A59230073DD00D89DF1 /* flexitconfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = flexitconfig.h; path = ../flexit/config/flexitconfig.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -82,9 +86,9 @@
 			isa = PBXGroup;
 			children = (
 				B91B03ED22EBF78A008C4E21 /* jsonhandler */,
-				B91B03EB22EBF76A008C4E21 /* flexjsonbridge */,
+				B91B03EB22EBF76A008C4E21 /* flexit */,
 				B91B03A722EBF6E2008C4E21 /* external */,
-				B91B03A422EBF6C6008C4E21 /* FlexBufferBridge */,
+				B91B03A422EBF6C6008C4E21 /* flexItUT */,
 				B91B039B22EBF5CB008C4E21 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -97,12 +101,12 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B91B03A422EBF6C6008C4E21 /* FlexBufferBridge */ = {
+		B91B03A422EBF6C6008C4E21 /* flexItUT */ = {
 			isa = PBXGroup;
 			children = (
-				B91B03A522EBF6D8008C4E21 /* main.cpp */,
+				B9442A3D230068EC00D89DF1 /* main.cpp */,
 			);
-			name = FlexBufferBridge;
+			name = flexItUT;
 			sourceTree = "<group>";
 		};
 		B91B03A722EBF6E2008C4E21 /* external */ = {
@@ -144,37 +148,39 @@
 		B91B03B822EBF729008C4E21 /* flatbuffers */ = {
 			isa = PBXGroup;
 			children = (
-				B91B03C022EBF736008C4E21 /* base.h */,
-				B91B03C522EBF736008C4E21 /* code_generators.h */,
-				B91B03C222EBF736008C4E21 /* flatbuffers.h */,
-				B91B03C622EBF736008C4E21 /* flatc.h */,
-				B91B03C122EBF736008C4E21 /* flexbuffers.h */,
-				B91B03C322EBF736008C4E21 /* grpc.h */,
-				B91B03BB22EBF736008C4E21 /* hash.h */,
-				B91B03BE22EBF736008C4E21 /* idl.h */,
-				B91B03BF22EBF736008C4E21 /* minireflect.h */,
-				B91B03B922EBF736008C4E21 /* reflection_generated.h */,
-				B91B03C722EBF736008C4E21 /* reflection.h */,
-				B91B03C422EBF736008C4E21 /* registry.h */,
-				B91B03C822EBF736008C4E21 /* stl_emulation.h */,
-				B91B03BA22EBF736008C4E21 /* util.h */,
+				B9442A4F23006A0500D89DF1 /* base.h */,
+				B9442A5123006A0500D89DF1 /* code_generators.h */,
+				B9442A4C23006A0500D89DF1 /* flatbuffers.h */,
+				B9442A4823006A0500D89DF1 /* flatc.h */,
+				B9442A4B23006A0500D89DF1 /* flexbuffers.h */,
+				B9442A4723006A0500D89DF1 /* grpc.h */,
+				B9442A4E23006A0500D89DF1 /* hash.h */,
+				B9442A5023006A0500D89DF1 /* idl.h */,
+				B9442A5223006A0500D89DF1 /* minireflect.h */,
+				B9442A4A23006A0500D89DF1 /* reflection_generated.h */,
+				B9442A4923006A0500D89DF1 /* reflection.h */,
+				B9442A4D23006A0500D89DF1 /* registry.h */,
+				B9442A4523006A0500D89DF1 /* stl_emulation.h */,
+				B9442A4623006A0500D89DF1 /* util.h */,
 			);
 			name = flatbuffers;
 			sourceTree = "<group>";
 		};
-		B91B03EB22EBF76A008C4E21 /* flexjsonbridge */ = {
+		B91B03EB22EBF76A008C4E21 /* flexit */ = {
 			isa = PBXGroup;
 			children = (
-				B91B03EC22EBF779008C4E21 /* flexjsonbridge.h */,
+				B9442A5323006ABD00D89DF1 /* flexit.h */,
+				B9442A58230073A800D89DF1 /* config */,
+				B9442A542300706900D89DF1 /* memorymap */,
 			);
-			name = flexjsonbridge;
+			name = flexit;
 			sourceTree = "<group>";
 		};
 		B91B03ED22EBF78A008C4E21 /* jsonhandler */ = {
 			isa = PBXGroup;
 			children = (
-				B91B03F222EBF79C008C4E21 /* json_util.hpp */,
-				B91B03EE22EBF79C008C4E21 /* json_value.hpp */,
+				B9442A3F230069E300D89DF1 /* json_util.hpp */,
+				B9442A40230069E300D89DF1 /* json_value.hpp */,
 				B91B03EF22EBF79C008C4E21 /* source */,
 			);
 			name = jsonhandler;
@@ -183,11 +189,28 @@
 		B91B03EF22EBF79C008C4E21 /* source */ = {
 			isa = PBXGroup;
 			children = (
-				B91B03F022EBF79C008C4E21 /* json_util.cpp */,
-				B91B03F122EBF79C008C4E21 /* json_value.cpp */,
+				B9442A42230069ED00D89DF1 /* json_util.cpp */,
+				B9442A41230069ED00D89DF1 /* json_value.cpp */,
 			);
 			name = source;
 			path = ../FlexBufferVsJson/jsonHandler/source;
+			sourceTree = "<group>";
+		};
+		B9442A542300706900D89DF1 /* memorymap */ = {
+			isa = PBXGroup;
+			children = (
+				B9442A552300720C00D89DF1 /* FlexMemoryMap.cpp */,
+				B9442A562300720C00D89DF1 /* FlexMemoryMap.h */,
+			);
+			name = memorymap;
+			sourceTree = "<group>";
+		};
+		B9442A58230073A800D89DF1 /* config */ = {
+			isa = PBXGroup;
+			children = (
+				B9442A59230073DD00D89DF1 /* flexitconfig.h */,
+			);
+			name = config;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -246,9 +269,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B91B03A622EBF6D8008C4E21 /* main.cpp in Sources */,
-				B91B03F422EBF79C008C4E21 /* json_value.cpp in Sources */,
-				B91B03F322EBF79C008C4E21 /* json_util.cpp in Sources */,
+				B9442A572300720C00D89DF1 /* FlexMemoryMap.cpp in Sources */,
+				B9442A3E230068EC00D89DF1 /* main.cpp in Sources */,
+				B9442A44230069ED00D89DF1 /* json_util.cpp in Sources */,
+				B9442A43230069ED00D89DF1 /* json_value.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -373,7 +397,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 72G66GY9SB;
+				DEVELOPMENT_TEAM = AK64Q8UBNM;
+				HEADER_SEARCH_PATHS = (
+					../external/rapidjson,
+					../flexit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};
@@ -384,7 +412,11 @@
 			buildSettings = {
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = 72G66GY9SB;
+				DEVELOPMENT_TEAM = AK64Q8UBNM;
+				HEADER_SEARCH_PATHS = (
+					../external/rapidjson,
+					../flexit,
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
 			};

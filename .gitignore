@@ -1,1 +1,10 @@
+# Folders
 Debug
+
+# Extensions
+*.xcbkptlist
+*.xcuserstate
+
+# Individual file names
+.DS_Store
+

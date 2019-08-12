@@ -10,7 +10,7 @@
 #include <chrono>
 #include <map>
 
-#include "flexjsonbridge.h"
+#include "flexit.h"
 
 using namespace std;
 
@@ -79,7 +79,7 @@ int main(int argc, const char * argv[]) {
         flexbuffers::Reference x = flexit::utils::CreateFlexBufferReference(nullptr, 0);
 		std::vector<char> *buffer = nullptr;
 #if !defined(_WIN32)  
-		auto f = flexit::BuildFlexbufferReferenceFromFile("/tmp/.123", buffer, x);
+		auto f = flexit::GetMemMappedFlexBufferReferenceFromFile("/tmp/.123", x);
 #else
 		auto f = flexit::BuildFlexbufferReferenceFromFile("C:\\ProgramData\\.kfdjkff", buffer, x);
 #endif
@@ -90,7 +90,6 @@ int main(int argc, const char * argv[]) {
         //size_t ss = strlen(test_string_valid);
         auto str3 = map["item3"].AsString().str();
         
-        std::map<std::pair<int, int>, int> hello;
         flexit::FreeFlexBufferReference(buffer);
         
         if(ret.empty())
