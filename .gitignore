@@ -8,3 +8,5 @@ Debug
 # Individual file names
 .DS_Store
 
+*.ipch
+*.opendb

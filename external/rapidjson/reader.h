@@ -23,7 +23,7 @@
 #include "internal/meta.h"
 #include "internal/stack.h"
 #include "internal/strtod.h"
-#include "flexbuffers.h"
+#include "flatbuffers/flexbuffers.h"
 #include <limits>
 #include <iostream>
 #include <cctype>

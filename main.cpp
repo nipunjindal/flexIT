@@ -81,7 +81,7 @@ int main(int argc, const char * argv[]) {
 #if !defined(_WIN32)  
 		auto f = flexit::GetMemMappedFlexBufferReferenceFromFile("/tmp/.123", x);
 #else
-		auto f = flexit::BuildFlexbufferReferenceFromFile("C:\\ProgramData\\.kfdjkff", buffer, x);
+		auto f = flexit::GetMemMappedFlexBufferReferenceFromFile("C:\\ProgramData\\.kfdjkff", x);
 #endif
         
         auto map3 = x.AsMap();

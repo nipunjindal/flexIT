@@ -64,34 +64,55 @@
   <PropertyGroup />
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(ProjectDir)..\flexbufferhandler;$(ProjectDir)..\;$(ProjectDir)..\flatbuffers\;$(ProjectDir)..\external\rapidjson\;$(ProjectDir)..\FlexBufferVsJson\jsonHandler\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(ProjectDir)..\flexit;$(ProjectDir)..\;$(ProjectDir)..\external\;$(ProjectDir)..\external\rapidjson\;$(ProjectDir)..\rapidjsonwrapper\jsonhandler\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="..\external\flatbuffers\base.h" />
+    <ClInclude Include="..\external\flatbuffers\code_generators.h" />
+    <ClInclude Include="..\external\flatbuffers\flatbuffers.h" />
+    <ClInclude Include="..\external\flatbuffers\flatc.h" />
+    <ClInclude Include="..\external\flatbuffers\flexbuffers.h" />
+    <ClInclude Include="..\external\flatbuffers\grpc.h" />
+    <ClInclude Include="..\external\flatbuffers\hash.h" />
+    <ClInclude Include="..\external\flatbuffers\idl.h" />
+    <ClInclude Include="..\external\flatbuffers\minireflect.h" />
+    <ClInclude Include="..\external\flatbuffers\reflection.h" />
+    <ClInclude Include="..\external\flatbuffers\reflection_generated.h" />
+    <ClInclude Include="..\external\flatbuffers\registry.h" />
+    <ClInclude Include="..\external\flatbuffers\stl_emulation.h" />
+    <ClInclude Include="..\external\flatbuffers\util.h" />
+    <ClInclude Include="..\external\rapidjson\allocators.h" />
+    <ClInclude Include="..\external\rapidjson\document.h" />
+    <ClInclude Include="..\external\rapidjson\encodedstream.h" />
+    <ClInclude Include="..\external\rapidjson\encodings.h" />
+    <ClInclude Include="..\external\rapidjson\filereadstream.h" />
+    <ClInclude Include="..\external\rapidjson\filewritestream.h" />
+    <ClInclude Include="..\external\rapidjson\fwd.h" />
+    <ClInclude Include="..\external\rapidjson\istreamwrapper.h" />
+    <ClInclude Include="..\external\rapidjson\memorybuffer.h" />
+    <ClInclude Include="..\external\rapidjson\memorystream.h" />
+    <ClInclude Include="..\external\rapidjson\ostreamwrapper.h" />
+    <ClInclude Include="..\external\rapidjson\pointer.h" />
+    <ClInclude Include="..\external\rapidjson\prettywriter.h" />
+    <ClInclude Include="..\external\rapidjson\rapidjson.h" />
     <ClInclude Include="..\external\rapidjson\reader.h" />
-    <ClInclude Include="..\flatbuffers\base.h" />
-    <ClInclude Include="..\flatbuffers\code_generators.h" />
-    <ClInclude Include="..\flatbuffers\flatbuffers.h" />
-    <ClInclude Include="..\flatbuffers\flatc.h" />
-    <ClInclude Include="..\flatbuffers\flexbuffers.h" />
-    <ClInclude Include="..\flatbuffers\grpc.h" />
-    <ClInclude Include="..\flatbuffers\hash.h" />
-    <ClInclude Include="..\flatbuffers\idl.h" />
-    <ClInclude Include="..\flatbuffers\minireflect.h" />
-    <ClInclude Include="..\flatbuffers\reflection.h" />
-    <ClInclude Include="..\flatbuffers\reflection_generated.h" />
-    <ClInclude Include="..\flatbuffers\registry.h" />
-    <ClInclude Include="..\flatbuffers\stl_emulation.h" />
-    <ClInclude Include="..\flatbuffers\util.h" />
-    <ClInclude Include="..\flexbufferhandler\flexjsonbridge.h" />
-    <ClInclude Include="..\FlexBufferVsJson\jsonHandler\json_util.hpp" />
-    <ClInclude Include="..\FlexBufferVsJson\jsonHandler\json_value.hpp" />
+    <ClInclude Include="..\external\rapidjson\schema.h" />
+    <ClInclude Include="..\external\rapidjson\stream.h" />
+    <ClInclude Include="..\external\rapidjson\stringbuffer.h" />
+    <ClInclude Include="..\external\rapidjson\writer.h" />
+    <ClInclude Include="..\flexit\config\flexitconfig.h" />
+    <ClInclude Include="..\flexit\flexit.h" />
+    <ClInclude Include="..\flexit\flexmemmap\FlexMemoryMap.h" />
+    <ClInclude Include="..\rapidjsonwrapper\jsonhandler\json_util.hpp" />
+    <ClInclude Include="..\rapidjsonwrapper\jsonhandler\json_value.hpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\flatbuffers\src\util.cpp" />
-    <ClCompile Include="..\FlexBufferVsJson\jsonHandler\source\json_util.cpp" />
-    <ClCompile Include="..\FlexBufferVsJson\jsonHandler\source\json_value.cpp" />
-    <ClCompile Include="..\FlexBufferVsJson\main.cpp" />
+    <ClCompile Include="..\external\flatbuffers\src\util.cpp" />
+    <ClCompile Include="..\flexit\flexmemmap\FlexMemoryMap.cpp" />
+    <ClCompile Include="..\main.cpp" />
+    <ClCompile Include="..\rapidjsonwrapper\jsonhandler\source\json_util.cpp" />
+    <ClCompile Include="..\rapidjsonwrapper\jsonhandler\source\json_value.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

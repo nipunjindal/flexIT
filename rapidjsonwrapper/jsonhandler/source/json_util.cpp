@@ -3,7 +3,7 @@
 // self
 #include "json_util.hpp"
 #include "json_value.hpp"
-#include "flexbuffers.h"
+#include "flatbuffers/flexbuffers.h"
 
 // std
 #include <stdint.h>

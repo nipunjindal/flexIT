@@ -97,7 +97,7 @@ mMappedDataLength(0)
         close(fileDescriptor);
     }
 #else
-    HANDLE lFileHandle = CreateFile((utils::Utf8StringToWstring(inPathName)).c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL);
+    HANDLE lFileHandle = CreateFileW((utils::Utf8StringToWstring(inPathName)).c_str(), GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, NULL, NULL);
     if (lFileHandle != NULL && lFileHandle != INVALID_HANDLE_VALUE)
     {
         DWORD lFileSize = 0;

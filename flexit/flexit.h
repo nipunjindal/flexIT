@@ -14,32 +14,17 @@
 #include "config/flexitconfig.h"
 #include "flexmemmap/FlexMemoryMap.h"
 
-#include "json_util.hpp"
-#include "json_value.hpp"
-
-#if FLEXBRIDGE_OS_WINDOWS
-#include <windows.h>
-#include <ShlObj.h>
-#endif
+#include "rapidjsonwrapper/jsonhandler/json_util.hpp"
+#include "rapidjsonwrapper/jsonhandler/json_value.hpp"
 
 namespace flexit {
-    
-    namespace utils
-    {
-#if FLEXBRIDGE_OS_WINDOWS
-        static std::wstring Utf8StringToWstring(const std::string &str)
-        {
-            const int kWideStrBufLen = 1024;
-            wchar_t wideStrBuf[kWideStrBufLen] = {0};
-            MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, wideStrBuf, kWideStrBufLen); // ignoring return value
-            return std::wstring(wideStrBuf);
-        }
-#endif
-        
-        inline flexbuffers::Reference CreateFlexBufferReference(const uint8_t *buffer, size_t size) {
-            return flexbuffers::Reference(nullptr, 0, 0);
-        }
-    }
+
+	namespace utils
+	{
+		inline flexbuffers::Reference CreateFlexBufferReference(const uint8_t *buffer, size_t size) {
+			return flexbuffers::Reference(nullptr, 0, 0);
+		}
+	}
     
     static bool JsonToFlexBuffer(const std::string&  input,
                                 flexbuffers::Builder& flexbuilder)

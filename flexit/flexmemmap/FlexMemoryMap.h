@@ -11,7 +11,25 @@
 
 #include <iostream>
 
+#if FLEXBRIDGE_OS_WINDOWS
+#include <windows.h>
+#include <ShlObj.h>
+#endif
+
 namespace flexit {
+
+	namespace utils
+	{
+#if FLEXBRIDGE_OS_WINDOWS
+		static std::wstring Utf8StringToWstring(const std::string &str)
+		{
+			const int kWideStrBufLen = 1024;
+			wchar_t wideStrBuf[kWideStrBufLen] = { 0 };
+			MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, wideStrBuf, kWideStrBufLen); // ignoring return value
+			return std::wstring(wideStrBuf);
+		}
+#endif
+	}
     
     enum class MemoryMapMode : std::uint32_t {
         kModeRead = 0,
