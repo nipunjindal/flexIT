@@ -188,9 +188,31 @@ void TestContainersTime()
     cout<< "Test ended ===== Containers Time" << endl << endl;
 }
 
+void TestLoadFromFile() {
+    auto log = [](const std::string& input) {
+        cout<< "[TestLoadFromFile] " << input << endl;
+    };
+    
+    using namespace flexbuffers;
+    using namespace flexit;
+    
+    if (auto reference = JsonToFlexBuffer("/tmp/.memoryMappedFile", test_string_valid)) {
+        if (reference->IsMap()) {
+            auto lookUpMap = reference->AsMap();
+            log(lookUpMap["item3"].AsString().str());
+        }
+        
+        std::string jsonEncodedString;
+        if (FlexBufferToJson(reference, jsonEncodedString)) {
+            log(jsonEncodedString);
+        }
+    }
+}
 
 int main(int argc, const char * argv[]) {
 
+    TestLoadFromFile();
+    return 1;
     TestDataDeserializationTime();
     TestDataSerializationTime();
     TestContainersTime();

@@ -16,6 +16,8 @@
 
 #include "rapidjsonwrapper/jsonhandler/json_util.hpp"
 #include "rapidjsonwrapper/jsonhandler/json_value.hpp"
+#include <chrono>
+#include <thread>
 
 namespace flexit {
 
@@ -50,6 +52,24 @@ namespace flexit {
         return lStatus;
     }
     
+    static bool FlexBufferToJson(const std::shared_ptr<flexbuffers::Reference>& flexReference,
+                                   std::string &jsonEncodedString,
+                                   bool strings_quoted = true,
+                                   bool keys_quoted = true)
+    {
+        bool lStatus = true;
+        try
+        {
+            flexReference->ToString(strings_quoted, keys_quoted, jsonEncodedString);
+        }
+        catch(...)
+        {
+            // Exception occured
+            lStatus = false;
+        }
+        return lStatus;
+    }
+    
     static bool FlushFlexbufferToFile(const std::string& filePath, flexbuffers::Builder& builder)
     {
         bool lStatus = false;
@@ -72,6 +92,7 @@ namespace flexit {
             {
                 lStatus = true;
                 fOutStream << buffer;
+                fOutStream.flush();
                 fOutStream.close();
             }
         }
@@ -129,6 +150,20 @@ namespace flexit {
         return lStatus;
     }
 
+    static std::shared_ptr<flexbuffers::Reference> JsonToFlexBuffer(const std::string& memoryMappedFile,
+                                                                    const std::string& jsonInput)
+    {
+        using namespace flexbuffers;
+        Builder flexBuilder;
+        
+        auto reference = std::make_shared<Reference>(nullptr, 0, 0);
+        if (JsonToFlexBuffer(jsonInput, flexBuilder)) {
+            FlushFlexbufferToFile(memoryMappedFile, flexBuilder);
+            flexit::GetMemMappedFlexBufferReferenceFromFile(memoryMappedFile, *reference.get());
+        }
+        return reference;
+    }
+    
 } // end namespace flexit
 
 #endif /* flexjsonbridge_h */
