@@ -1,96 +1,168 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="source">
-      <UniqueIdentifier>{5904f6cd-fa38-4880-9495-2a5fd3b1eddd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="flatbuffers">
-      <UniqueIdentifier>{fc3b9ace-550a-496f-ac00-144abdcb6561}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="rapidjson">
-      <UniqueIdentifier>{70f77f55-8da9-41bc-9d06-d007bca63f86}</UniqueIdentifier>
-    </Filter>
     <Filter Include="jsonhandler">
       <UniqueIdentifier>{69a7448d-38a3-4118-9d50-e7d4a5e4012a}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="flexbufferhandler">
-      <UniqueIdentifier>{e5c1af70-0a10-4203-b546-f0949247e8bd}</UniqueIdentifier>
     </Filter>
     <Filter Include="jsonhandler\source">
       <UniqueIdentifier>{12cc16bf-6319-4920-92bf-b026a358ed02}</UniqueIdentifier>
     </Filter>
-    <Filter Include="flatbuffers\source">
-      <UniqueIdentifier>{ce97ffa2-82ca-465e-b9e9-1a5105628131}</UniqueIdentifier>
+    <Filter Include="external">
+      <UniqueIdentifier>{942353da-c19a-4bcd-9097-3dcd25507c47}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\flatbuffers">
+      <UniqueIdentifier>{fc3b9ace-550a-496f-ac00-144abdcb6561}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\rapidjson">
+      <UniqueIdentifier>{70f77f55-8da9-41bc-9d06-d007bca63f86}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flexit">
+      <UniqueIdentifier>{e5c1af70-0a10-4203-b546-f0949247e8bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flexit\config">
+      <UniqueIdentifier>{23ab24f6-5324-447e-b1b5-39fefdb66036}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flexit\memorymap">
+      <UniqueIdentifier>{f214fb54-4702-497a-80e9-5bcd31f3bd67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="flexitUT">
+      <UniqueIdentifier>{3da1400e-2b23-4044-a322-6f2a113ce30f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="external\flatbuffers\source">
+      <UniqueIdentifier>{b1e62dc1-d76e-425a-978d-402c97bdd415}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\flexbufferhandler\flexjsonbridge.h">
-      <Filter>flexbufferhandler</Filter>
+    <ClInclude Include="..\flexit\flexit.h">
+      <Filter>flexit</Filter>
     </ClInclude>
-    <ClInclude Include="..\FlexBufferVsJson\jsonHandler\json_util.hpp">
+    <ClInclude Include="..\rapidjsonwrapper\jsonhandler\json_util.hpp">
       <Filter>jsonhandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\FlexBufferVsJson\jsonHandler\json_value.hpp">
+    <ClInclude Include="..\rapidjsonwrapper\jsonhandler\json_value.hpp">
       <Filter>jsonhandler</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\base.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\base.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\code_generators.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\code_generators.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\flatbuffers.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\flatbuffers.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\flatc.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\flatc.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\flexbuffers.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\flexbuffers.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\grpc.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\grpc.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\hash.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\hash.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\idl.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\idl.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\minireflect.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\minireflect.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\reflection.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\reflection.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\reflection_generated.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\reflection_generated.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\registry.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\registry.h">
+      <Filter>external\flatbuffers</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\stl_emulation.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\flatbuffers\stl_emulation.h">
+      <Filter>external\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\flatbuffers\util.h">
+      <Filter>external\flatbuffers</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\allocators.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\document.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\encodedstream.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\encodings.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\filereadstream.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\filewritestream.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\fwd.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\istreamwrapper.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\memorybuffer.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\memorystream.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\ostreamwrapper.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\pointer.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\prettywriter.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\rapidjson.h">
+      <Filter>external\rapidjson</Filter>
     </ClInclude>
     <ClInclude Include="..\external\rapidjson\reader.h">
-      <Filter>rapidjson</Filter>
+      <Filter>external\rapidjson</Filter>
     </ClInclude>
-    <ClInclude Include="..\flatbuffers\util.h">
-      <Filter>flatbuffers</Filter>
+    <ClInclude Include="..\external\rapidjson\schema.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\stream.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\stringbuffer.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\external\rapidjson\writer.h">
+      <Filter>external\rapidjson</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flexit\flexmemmap\FlexMemoryMap.h">
+      <Filter>flexit\memorymap</Filter>
+    </ClInclude>
+    <ClInclude Include="..\flexit\config\flexitconfig.h">
+      <Filter>flexit\config</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\FlexBufferVsJson\jsonHandler\source\json_util.cpp">
+    <ClCompile Include="..\rapidjsonwrapper\jsonhandler\source\json_util.cpp">
       <Filter>jsonhandler\source</Filter>
     </ClCompile>
-    <ClCompile Include="..\FlexBufferVsJson\jsonHandler\source\json_value.cpp">
+    <ClCompile Include="..\rapidjsonwrapper\jsonhandler\source\json_value.cpp">
       <Filter>jsonhandler\source</Filter>
     </ClCompile>
-    <ClCompile Include="..\FlexBufferVsJson\main.cpp">
-      <Filter>source</Filter>
+    <ClCompile Include="..\flexit\flexmemmap\FlexMemoryMap.cpp">
+      <Filter>flexit\memorymap</Filter>
     </ClCompile>
-    <ClCompile Include="..\flatbuffers\src\util.cpp">
-      <Filter>flatbuffers\source</Filter>
+    <ClCompile Include="..\main.cpp">
+      <Filter>flexitUT</Filter>
+    </ClCompile>
+    <ClCompile Include="..\external\flatbuffers\src\util.cpp">
+      <Filter>external\flatbuffers\source</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

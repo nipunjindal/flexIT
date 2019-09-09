@@ -226,4 +226,77 @@ inline const JsonValueMap* GetOptionalMap(const JsonValue& jsonValue, const char
 }
 }
 
+namespace {
+    template<typename RapidJsonWriter>
+    void Serialize( const jsonhandler::JsonValue&         value,
+                   RapidJsonWriter& writer)
+    {
+        using namespace jsonhandler;
+        
+        switch (value.GetType())
+        {
+            case JsonValue::type_Map:
+            {
+                writer.StartObject();
+                
+                const JsonValueMap& object = value.GetMap();
+                for (const JsonValueMap::value_type& member: object)
+                {
+                    // First write the name of the Object member
+                    rapidjson::SizeType size = static_cast<rapidjson::SizeType>(member.first.length());
+                    writer.String(member.first.c_str(), size);
+                    
+                    // Then Serialize() the member itself
+                    Serialize(member.second, writer);
+                }
+                
+                writer.EndObject(static_cast<rapidjson::SizeType>(object.size()));
+                
+                break;
+            }
+            case JsonValue::type_List:
+            {
+                writer.StartArray();
+                
+                const JsonValueList& array = value.GetList();
+                for (const JsonValueList::value_type& element: array)
+                {
+                    Serialize(element, writer);
+                }
+                
+                writer.EndArray(static_cast<rapidjson::SizeType>(array.size()));
+                
+                break;
+            }
+            case JsonValue::type_String:
+            {
+                const std::string& str = value.GetString();
+                writer.String(str.c_str(), static_cast<rapidjson::SizeType>(str.length()));
+                break;
+            }
+            case JsonValue::type_Number:
+                switch (value.GetNumericType())
+            {
+                case JsonValue::NumericType::Double:    writer.Double(value.GetNumber());   break;
+                case JsonValue::NumericType::Int32:     writer.Int(value.GetInt32());       break;
+                case JsonValue::NumericType::UInt32:    writer.Uint(value.GetUInt32());     break;
+                case JsonValue::NumericType::Int64:     writer.Int64(value.GetInt64());     break;
+                case JsonValue::NumericType::Invalid:
+                {
+                    writer.Double(0);
+                }
+                    break;
+            }
+                break;
+                
+            case JsonValue::type_Bool:
+                writer.Bool(value.GetBool());
+                break;
+            case JsonValue::type_Null:
+                writer.Null();
+                break;
+        }
+    }
+}
+
 #endif // JSONHANDLER_JSON_UTIL

@@ -11,39 +11,20 @@
 
 #include <fstream>
 
-#include "json_util.hpp"
-#include "json_value.hpp"
+#include "config/flexitconfig.h"
+#include "flexmemmap/FlexMemoryMap.h"
 
-// Standard includes
-#if defined(_WIN32)
-#define FLEXBRIDGE_OS_WINDOWS 1
-#else
-#define FLEXBRIDGE_OS_WINDOWS 0
-#endif
-
-#if FLEXBRIDGE_OS_WINDOWS
-#include <windows.h>
-#include <ShlObj.h>
-#endif
+#include "rapidjsonwrapper/jsonhandler/json_util.hpp"
+#include "rapidjsonwrapper/jsonhandler/json_value.hpp"
 
 namespace flexit {
-    
-    namespace utils
-    {
-#if FLEXBRIDGE_OS_WINDOWS
-        static std::wstring Utf8StringToWstring(const std::string &str)
-        {
-            const int kWideStrBufLen = 1024;
-            wchar_t wideStrBuf[kWideStrBufLen] = {0};
-            MultiByteToWideChar(CP_UTF8, 0, str.c_str(), -1, wideStrBuf, kWideStrBufLen); // ignoring return value
-            return std::wstring(wideStrBuf);
-        }
-#endif
-        
-        inline flexbuffers::Reference CreateFlexBufferReference(const uint8_t *buffer, size_t size) {
-            return flexbuffers::Reference(nullptr, 0, 0);
-        }
-    }
+
+	namespace utils
+	{
+		inline flexbuffers::Reference CreateFlexBufferReference(const uint8_t *buffer, size_t size) {
+			return flexbuffers::Reference(nullptr, 0, 0);
+		}
+	}
     
     static bool JsonToFlexBuffer(const std::string&  input,
                                 flexbuffers::Builder& flexbuilder)
@@ -97,18 +78,7 @@ namespace flexit {
         return lStatus;
     }
     
-    static bool FreeFlexBufferReference(std::vector<char>* buffer)
-    {
-        if(buffer != nullptr)
-        {
-            delete buffer;
-            buffer = nullptr;
-            return true;
-        }
-        return false;
-    }
-    
-    static bool BuildFlexbufferReferenceFromFile(const std::string& filePath, std::vector<char>* buffer, flexbuffers::Reference& reference)
+    static bool GetFlexbufferReferenceFromFile(const std::string& filePath, flexbuffers::Reference& reference)
     {
         bool lStatus = false;
 
@@ -125,18 +95,36 @@ namespace flexit {
         if(fStream.is_open())
         {
             std::streampos fileSize = fStream.tellg();
-            buffer = (new std::vector<char>(fileSize));
+            std::vector<char> buffer(fileSize);
+            //buffer = (new std::vector<char>(fileSize));
             std::vector<uint8_t>  bufferPtr(fileSize);
 
             fStream.seekg (0, std::ios::beg);
             lStatus = true;
-            fStream.read(buffer->data(), fileSize);
+            fStream.read(buffer.data(), fileSize);
             fStream.close();
             
-            memcpy((void*)(bufferPtr.data()), (void*)(buffer->data()), sizeof(fileSize));
-
+            memcpy((void*)(bufferPtr.data()), (void*)(buffer.data()), sizeof(fileSize));
             //bufferPtr = static_cast<std::vector<uint8_t>>(buffer);
             reference = (flexbuffers::GetRoot(bufferPtr.data(), fileSize));
+        }
+        return lStatus;
+    }
+    
+    static bool GetMemMappedFlexBufferReferenceFromFile(const std::string& filePath, flexbuffers::Reference& reference)
+    {
+        bool lStatus = false;
+        
+        //auto bufferpointer = reinterpret_cast<const char *>(builder.GetBufferPointer());
+        
+        FlexMemoryMap fmap(filePath);
+        
+        if(fmap.GetMemMappedData())
+        {
+            std::vector<uint8_t>  bufferPtr(fmap.GetMemMappedDataLength());
+            memcpy((void*)(bufferPtr.data()), fmap.GetMemMappedData(), fmap.GetMemMappedDataLength());
+            reference = flexbuffers::GetRoot(bufferPtr.data(), bufferPtr.size());
+            lStatus = true;
         }
         return lStatus;
     }

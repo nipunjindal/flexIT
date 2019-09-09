@@ -3,7 +3,7 @@
 // self
 #include "json_util.hpp"
 #include "json_value.hpp"
-#include "flexbuffers.h"
+#include "flatbuffers/flexbuffers.h"
 
 // std
 #include <stdint.h>
@@ -113,6 +113,58 @@ private:
     unsigned int mMaxLength;
 };
 
+template<typename Stream, typename Encoding = rapidjson::UTF8<>, typename Allocator = rapidjson::MemoryPoolAllocator<> >
+class DirectWriter : public rapidjson::Writer<Stream, Encoding, Encoding, Allocator>
+{
+public:
+    typedef typename rapidjson::Writer<Stream, Encoding, Encoding, Allocator> Base;
+    DirectWriter(   Stream& stream,
+                 Allocator* allocator = 0,
+                 size_t levelDepth = kDefaultLevelDepth) :
+    Base(stream, allocator, levelDepth)
+    { }
+    
+    void WriteString(const typename Base::Ch* str, rapidjson::SizeType length)
+    {
+        Base::WriteString(str, length);
+    }
+    
+    void WriteDouble(double d)
+    {
+        const double nearest = std::floor(d + (d < 0 ? -0.5 : 0.5));
+        const double kEpsilon = 1.0e-15;
+        
+        double a = std::abs(d - nearest);
+        double b = kEpsilon;
+        
+        const bool useIntegral = (a <= b );
+        const long long integral = static_cast<long long>(nearest);
+        
+        if (useIntegral)
+        {
+            Base::WriteInt64(integral);
+        }
+        else
+        {
+            Base::WriteDouble(d);
+        }
+    }
+    
+    void WriteBool(bool b)
+    {
+        Base::WriteBool(b);
+    }
+    
+    void WriteNull()
+    {
+        Base::WriteNull();
+    }
+    
+protected:
+    static const size_t kDefaultLevelDepth = 32;
+};
+
+    
 } // namespace anonymous
 
 namespace jsonhandler {
@@ -146,7 +198,61 @@ bool JsonDecodeToFlexBuffer(std::istream&   input,
 
     return result;
 }
- 
+
+
+void
+JsonEncode( const JsonValue& jsonValue,
+           std::string& result,
+           bool makePretty)
+{
+    rapidjson::StringBuffer buffer;
+    if (makePretty)
+    {
+        rapidjson::PrettyWriter<rapidjson::StringBuffer> prettyWriter(buffer);
+        Serialize(jsonValue, prettyWriter);
+    }
+    else
+    {
+        rapidjson::Writer<rapidjson::StringBuffer> writer(buffer);
+        Serialize(jsonValue, writer);
+    }
+    
+    result = buffer.GetString();
+}
+
+std::string JsonEncode(const std::string& value)
+{
+    rapidjson::StringBuffer buffer;
+    DirectWriter<rapidjson::StringBuffer> writer(buffer);
+    writer.WriteString(value.c_str(), static_cast<rapidjson::SizeType>(value.length()));
+    return std::string(buffer.GetString());
+}
+
+std::string JsonEncode(double value)
+{
+    rapidjson::StringBuffer buffer;
+    DirectWriter<rapidjson::StringBuffer> writer(buffer);
+    writer.WriteDouble(value);
+    return std::string(buffer.GetString());
+}
+
+std::string JsonEncode(bool value)
+{
+    rapidjson::StringBuffer buffer;
+    DirectWriter<rapidjson::StringBuffer> writer(buffer);
+    writer.WriteBool(value);
+    return std::string(buffer.GetString());
+}
+
+std::string JsonEncodeNull()
+{
+    rapidjson::StringBuffer buffer;
+    DirectWriter<rapidjson::StringBuffer> writer(buffer);
+    writer.WriteNull();
+    return std::string(buffer.GetString());
+}
+    
+
 bool JsonDecode(JsonValue&      jsonValue,
                 std::istream&   input,
                 JsonParseError& parseError,
