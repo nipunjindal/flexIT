@@ -556,9 +556,6 @@ public:
     ParseResult Parse(InputStream& is, Handler& handler, flexbuffers::Builder& flexbuilder) {
         std::string key;
         
-        if (parseFlags & kParseIterativeFlag)
-            return IterativeParse<parseFlags>(is, handler, key);
-        
         parseResult_.Clear();
         
         ClearStackOnExit scope(*this);
@@ -566,24 +563,16 @@ public:
         SkipWhitespaceAndComments<parseFlags>(is);
         RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
         
-        if (RAPIDJSON_UNLIKELY(is.Peek() == '\0')) {
-            RAPIDJSON_PARSE_ERROR_NORETURN(kParseErrorDocumentEmpty, is.Tell());
+        ParseValue<parseFlags>(is, handler, key, flexbuilder);
+        flexbuilder.Finish();
+        RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
+        
+        SkipWhitespaceAndComments<parseFlags>(is);
+        RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
+        
+        if (RAPIDJSON_UNLIKELY(is.Peek() != '\0')) {
+            RAPIDJSON_PARSE_ERROR_NORETURN(kParseErrorDocumentRootNotSingular, is.Tell());
             RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
-        }
-        else {
-            ParseValue<parseFlags>(is, handler, key, flexbuilder);
-            flexbuilder.Finish();
-            RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
-            
-            if (!(parseFlags & kParseStopWhenDoneFlag)) {
-                SkipWhitespaceAndComments<parseFlags>(is);
-                RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
-                
-                if (RAPIDJSON_UNLIKELY(is.Peek() != '\0')) {
-                    RAPIDJSON_PARSE_ERROR_NORETURN(kParseErrorDocumentRootNotSingular, is.Tell());
-                    RAPIDJSON_PARSE_ERROR_EARLY_RETURN(parseResult_);
-                }
-            }
         }
         
         return parseResult_;
@@ -919,21 +908,7 @@ private:
         is.Take();
         
         if (RAPIDJSON_LIKELY(Consume(is, 'u') && Consume(is, 'l') && Consume(is, 'l'))) {
-            if (RAPIDJSON_UNLIKELY(!handler.Null()))
-            {
-                RAPIDJSON_PARSE_ERROR(kParseErrorTermination, is.Tell());
-            }
-            else
-            {
-                if(key.empty())
-                {
-                    flexbuilder.Add(nullptr);
-                }
-                else
-                {
-                    flexbuilder.Add(key, nullptr);
-                }
-            }
+                (key.empty()) ? flexbuilder.Add(nullptr) : flexbuilder.Add(key, nullptr);
         }
         else
             RAPIDJSON_PARSE_ERROR(kParseErrorValueInvalid, is.Tell());
@@ -971,21 +946,7 @@ private:
         is.Take();
         
         if (RAPIDJSON_LIKELY(Consume(is, 'r') && Consume(is, 'u') && Consume(is, 'e'))) {
-            if (RAPIDJSON_UNLIKELY(!handler.Bool(true)))
-            {
-                RAPIDJSON_PARSE_ERROR(kParseErrorTermination, is.Tell());
-            }
-            else
-            {
-                if(key.empty())
-                {
-                    flexbuilder.Add(true);
-                }
-                else
-                {
-                    flexbuilder.Add(key, true);
-                }
-            }
+                (key.empty()) ? flexbuilder.Add(true) :  flexbuilder.Add(key, true);
         }
         else
             RAPIDJSON_PARSE_ERROR(kParseErrorValueInvalid, is.Tell());
@@ -997,21 +958,7 @@ private:
         is.Take();
         
         if (RAPIDJSON_LIKELY(Consume(is, 'a') && Consume(is, 'l') && Consume(is, 's') && Consume(is, 'e'))) {
-            if (RAPIDJSON_UNLIKELY(!handler.Bool(false)))
-            {
-                RAPIDJSON_PARSE_ERROR(kParseErrorTermination, is.Tell());
-            }
-            else
-            {
-                if(key.empty())
-                {
-                    flexbuilder.Add(false);
-                }
-                else
-                {
-                    flexbuilder.Add(key, false);
-                }
-            }
+            (key.empty()) ? flexbuilder.Add(false) : flexbuilder.Add(key, false);
         }
         else
             RAPIDJSON_PARSE_ERROR(kParseErrorValueInvalid, is.Tell());
@@ -1095,7 +1042,7 @@ private:
         if (parseFlags & kParseInsituFlag) {
             bool isQuotedString = true;
             typename InputStream::Ch *head = s.PutBegin();
-            ParseStringToStream<parseFlags, SourceEncoding, SourceEncoding>(s, s, isQuotedString);
+            ParseStringToStream<parseFlags, SourceEncoding, SourceEncoding>(s, s, isQuotedString, isKey);
             RAPIDJSON_PARSE_ERROR_EARLY_RETURN_EMPTY_STR;
             
             size_t length = s.PutEnd(head) - 1;
@@ -1108,7 +1055,7 @@ private:
         else {
             bool isQuotedString = true;
             StackStream<typename TargetEncoding::Ch> stackStream(stack_);
-            ParseStringToStream<parseFlags, SourceEncoding, TargetEncoding>(s, stackStream, isQuotedString);
+            ParseStringToStream<parseFlags, SourceEncoding, TargetEncoding>(s, stackStream, isQuotedString, isKey);
             RAPIDJSON_PARSE_ERROR_EARLY_RETURN_EMPTY_STR;
             SizeType length = static_cast<SizeType>(stackStream.Length()) - 1;
             const typename TargetEncoding::Ch* const str = stackStream.Pop();
@@ -1128,7 +1075,7 @@ private:
     // Parse string to an output is
     // This function handles the prefix/suffix double quotes, escaping, and optional encoding validation.
     template<unsigned parseFlags, typename SEncoding, typename TEncoding, typename InputStream, typename OutputStream>
-    RAPIDJSON_FORCEINLINE void ParseStringToStream(InputStream& is, OutputStream& os, bool &isQuotedString) {
+    RAPIDJSON_FORCEINLINE void ParseStringToStream(InputStream& is, OutputStream& os, bool &isQuotedString, bool isKey = false) {
 //!@cond RAPIDJSON_HIDDEN_FROM_DOXYGEN
 #define Z16 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
         static const char escape[256] = {
@@ -1179,7 +1126,12 @@ private:
                 os.Put('\0');   // null-terminate the string
                 return;
             }
-            else if (RAPIDJSON_UNLIKELY(c == ':')) {    // Closing double quote
+            else if (RAPIDJSON_UNLIKELY(c == ':') && is.Peek() == '"' && isKey == false) {    // Closing double quote
+                isQuotedString = false;
+                os.Put('\0');   // null-terminate the string
+                return;
+            }
+            else if (RAPIDJSON_UNLIKELY(c == ':') && isKey == true) {    // Closing double quote
                 isQuotedString = false;
                 os.Put('\0');   // null-terminate the string
                 return;
@@ -2014,51 +1966,25 @@ private:
             case '"':
             {
                 std::string lKey = ParseString<parseFlags>(is, handler);
-                if(key.empty() || forceInsert)
-                {
-                    flexbuilder.Add(lKey);
-                }
-                else
-                {
-                    flexbuilder.Add(key, lKey);
-                }
+                (key.empty() || forceInsert) ? flexbuilder.Add(lKey) : flexbuilder.Add(key, lKey);
                 break;
             }
             case '{':
             {
-                if(key.empty() || forceInsert)
-                {
+                (key.empty() || forceInsert) ?
                     flexbuilder.Map([&]()
-                                    {
-                                        ParseObject<parseFlags>(is, handler, key, flexbuilder);
-                                    });
-                }
-                else
-                {
-                    flexbuilder.Map(key, [&]()
-                                    {
-                                        ParseObject<parseFlags>(is, handler, key, flexbuilder);
-                                    });
-                }
+                                    { ParseObject<parseFlags>(is, handler, key, flexbuilder); })
+                    : flexbuilder.Map(key, [&]()
+                                    { ParseObject<parseFlags>(is, handler, key, flexbuilder); });
                 break;
             }
             case '[':
             {
-                if(key.empty() || forceInsert)
-                {
+                (key.empty() || forceInsert) ?
                     flexbuilder.Vector([&]()
-                                       {
-                                           ParseArray<parseFlags>(is, handler, key, flexbuilder);
-                                       });
-                }
-                else
-                {
-                    flexbuilder.Vector(key, [&]()
-                                       {
-                                           ParseArray<parseFlags>(is, handler, key, flexbuilder);
-                                       });
-                }
-                break;
+                                       { ParseArray<parseFlags>(is, handler, key, flexbuilder); })
+                    : flexbuilder.Vector(key, [&]()
+                                       { ParseArray<parseFlags>(is, handler, key, flexbuilder); });
                 // ParseArray <parseFlags>(is, handler, key);
                 break;
             }
